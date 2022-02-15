@@ -1,3 +1,5 @@
+<%@page import="kr.co.board1.db.Sql"%>
+<%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -15,27 +17,10 @@
 	String addr1 = request.getParameter("addr1");
 	String addr2 = request.getParameter("addr2");
 	String regip = request.getRemoteAddr(); // 클라이언트 시스템 IP
-	String host = "jdbc:mysql://chhak.or.kr:3306/yym10618";
-	String user = "yym10618";
-	String pass = "1234";
 	
 	try{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
-		String sql  = "INSERT INTO `Board_user` SET ";
-			   sql += "`uid`=?,";
-			   sql += "`pass`=PASSWORD(),";
-			   sql += "`name`=?,";
-			   sql += "`nick`=?,";
-			   sql += "`email`=?,";
-			   sql += "`hp`=?,";
-			   sql += "`zip`=?,";
-			   sql += "`addr1`=?,";
-			   sql += "`addr2`=?,";
-			   sql += "`regip`=?,";
-			   sql += "`rdate`=NOW()";
-			   
-		PreparedStatement psmt = conn.prepareStatement(sql);
+		Connection conn = DBConfig.getInstance().getConnection();
+		PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_USER);
 		psmt.setString(1, uid);
 		psmt.setString(2, pass1);
 		psmt.setString(3, name);
@@ -55,5 +40,4 @@
 	
 	// 로그인 페이지로 이동
 	response.sendRedirect("/Board1/user/login.jsp?success=200");
-	
 %>
