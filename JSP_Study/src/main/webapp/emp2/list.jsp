@@ -27,11 +27,11 @@
 			EmployeeBean eb = new EmployeeBean();
 			eb.setUid(rs.getString(1));
 			eb.setName(rs.getString(2));
-			eb.setGender(rs.getString(3));
+			eb.setGender(rs.getInt(3));
 			eb.setHp(rs.getString(4));
 			eb.setEmail(rs.getString(5));
 			eb.setPos(rs.getString(6));
-			eb.setDep(rs.getString(7));
+			eb.setDep(rs.getInt(7));
 			eb.setRdate(rs.getString(8));
 			
 			members.add(eb);
