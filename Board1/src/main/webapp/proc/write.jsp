@@ -52,10 +52,8 @@
 		
 		oriFile.renameTo(newFile);
 		
-		
 		// 파일테이블 Insert
 		ArticleDao.getInstance().insertFile(id, fname, newName);
-		
 	} // 파일처리 작업 끝
 	
 	

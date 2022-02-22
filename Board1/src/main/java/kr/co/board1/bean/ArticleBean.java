@@ -1,7 +1,7 @@
 package kr.co.board1.bean;
 
 public class ArticleBean {
-	
+
 	private int id;
 	private int parent;
 	private int comment;
@@ -14,8 +14,17 @@ public class ArticleBean {
 	private String regip;
 	private String rdate;
 	
-	// �߰��ʵ�
+	// Ãß°¡ÇÊµå
 	private String fname;
+	private FileBean fb;
+	
+	public FileBean getFb() {
+		return fb;
+	}
+	public void setFb(FileBean fb) {
+		this.fb = fb;
+	}
+	
 	
 	public String getFname() {
 		return fname;
@@ -23,6 +32,7 @@ public class ArticleBean {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+	
 	private String nick;
 	
 	public String getNick() {
@@ -31,6 +41,8 @@ public class ArticleBean {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -43,6 +55,10 @@ public class ArticleBean {
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
+	public void setParent(String parent) {
+		this.parent = Integer.parseInt(parent);
+	}
+	
 	public int getComment() {
 		return comment;
 	}

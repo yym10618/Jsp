@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConfig {
 	
+	// ½Ì±ÛÅæ °´Ã¼
 	private static DBConfig instance = new DBConfig();
 	
 	public static DBConfig getInstance() {
