@@ -14,7 +14,7 @@ public class ArticleBean {
 	private String regip;
 	private String rdate;
 	
-	// Ãß°¡ÇÊµå
+	// �߰��ʵ�
 	private String fname;
 	private FileBean fb;
 	

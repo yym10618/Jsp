@@ -16,6 +16,7 @@
 <%
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
+
 	// Multipart 전송 데이터 수신
 	String path = request.getServletContext().getRealPath("/file"); // 업로드 파일이 저장될 시스템 경로
 	int maxsize = 1024 * 1024 * 10; // 최대 파일 허용량 10MB
@@ -60,3 +61,6 @@
 	// 리다이렉트
 	response.sendRedirect("/Board1/list.jsp");
 %>
+
+
+

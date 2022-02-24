@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConfig {
 	
-	// ½Ì±ÛÅæ °´Ã¼
+	// �̱��� ��ü
 	private static DBConfig instance = new DBConfig();
 	
 	public static DBConfig getInstance() {
@@ -14,9 +14,9 @@ public class DBConfig {
 	
 	private DBConfig() {}
 	
-	private final String HOST = "jdbc:mysql://chhak.or.kr:3306/yym10618";
-	private final String USER = "yym10618";
-	private final String PASS = "1234";
+	private final String HOST = "jdbc:mysql://192.168.56.102:3306/yym10618";
+	private final String USER = "root";
+	private final String PASS = "12345";
 	
 	public Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");

@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("utf-8");
 	String hp = request.getParameter("hp");
 	
-	// 아이디 여부확인
+	// 휴대폰 여부확인
 	int count = UserDao.getInstance().selectUserCount(hp, 4);
 	
 	// 결과값 리턴

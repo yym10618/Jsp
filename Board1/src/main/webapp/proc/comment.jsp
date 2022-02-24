@@ -23,4 +23,5 @@
 	
 	// 리다이렉트
 	response.sendRedirect("/Board1/view.jsp?id="+id);
+
 %>

@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("utf-8");
 	String nick = request.getParameter("nick");
 	
-	// 아이디 여부확인
+	// 닉네임 여부확인
 	int count = UserDao.getInstance().selectUserCount(nick, 2);
 	
 	// 결과값 리턴

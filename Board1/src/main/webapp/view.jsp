@@ -11,6 +11,7 @@
 		response.sendRedirect("/Board1/user/login.jsp?success=102");
 		return; // <-- 프로그램 실행 여기까지
 	}
+
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	

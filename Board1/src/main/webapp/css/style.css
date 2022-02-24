@@ -1,8 +1,8 @@
-/* ÃÊ±âÈ­ */
+/* ì´ˆê¸°í™” */
 * {
     margin: 0;
     padding: 0;
-    font: normal 12px 'µ¸¿ò';
+    font: normal 12px 'ë‹ì›€';
 }
 
 ul, ol {list-style: none;}
@@ -11,7 +11,7 @@ input, textarea {outline: none;}
 body {}
 #wrapper {}
 
-/* È¸¿ø-·Î±×ÀÎ */
+/* íšŒì›-ë¡œê·¸ì¸ */
 #user {}
 #user.login {
     width: 360px;
@@ -64,7 +64,7 @@ body {}
     float: right;
 }
 
-/* È¸¿ø-¾à°ü */
+/* íšŒì›-ì•½ê´€ */
 #user.terms {
     width: 600px;
     margin: 60px auto;            
@@ -112,7 +112,7 @@ body {}
 #user.terms > div > a:nth-child(1) {background: #fdfdfd;}
 #user.terms > div > a:nth-child(2) {background: #e9e9e9;}
 
-/* È¸¿ø-È¸¿ø°¡ÀÔ */
+/* íšŒì›-íšŒì›ê°€ìž… */
 #user.register {
     width: 600px;
     height: auto;
@@ -181,7 +181,7 @@ body {}
     color: #111;
 }
 
-/* °Ô½ÃÆÇ - °øÅë */
+/* ê²Œì‹œíŒ - ê³µí†µ */
 #board {
     width: 720px;
     margin: 60px auto;            
@@ -232,7 +232,7 @@ body {}
 #board .btnModify { padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 #board .btnList   { padding: 8px; border: 1px solid #bebebe; background: #fdfdfd; color: #111;}
 
-/* °Ô½ÃÆÇ - ±Û¸ñ·Ï */
+/* ê²Œì‹œíŒ - ê¸€ëª©ë¡ */
 #board.list {
     position: relative;
 }
@@ -271,7 +271,7 @@ body {}
     bottom: 14px;
     right: 0;
 }
-/* °Ô½ÃÆÇ-±Ûº¸±â */
+/* ê²Œì‹œíŒ-ê¸€ë³´ê¸° */
 #board.view > div {
     padding: 16px 0;
     text-align: right;
@@ -326,14 +326,14 @@ body {}
 	display: none;
 }
 
-/* °Ô½ÃÆÇ-±Û¾²±â */
+/* ê²Œì‹œíŒ-ê¸€ì“°ê¸° */
 #board.write {}
 #board.write form > div {
     margin-top: 10px;
     text-align: right;
 }
 
-/* °Ô½ÃÆÇ-±Û¼öÁ¤ */
+/* ê²Œì‹œíŒ-ê¸€ìˆ˜ì • */
 #board.modify form > div {
     margin-top: 10px;
     text-align: right;

@@ -17,7 +17,7 @@ public class UserDao {
 	
 	private UserDao() {}
 	
-	// ±âº» CRUD ¸Þ¼­µå
+	// �⺻ CRUD �޼���
 	public void insertUser() {}
 	
 	public int selectUserCount(String info, int what) {

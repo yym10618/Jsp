@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("utf-8");
 	String email = request.getParameter("email");
 	
-	// 아이디 여부확인
+	// 이메일여부확인
 	int count = UserDao.getInstance().selectUserCount(email, 3);
 	
 	// 결과값 리턴

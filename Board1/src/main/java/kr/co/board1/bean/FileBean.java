@@ -44,6 +44,4 @@ public class FileBean {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-
 }
-
