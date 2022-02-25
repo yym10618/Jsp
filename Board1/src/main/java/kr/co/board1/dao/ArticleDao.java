@@ -11,6 +11,7 @@ import kr.co.board1.bean.ArticleBean;
 import kr.co.board1.bean.FileBean;
 import kr.co.board1.db.DBConfig;
 import kr.co.board1.db.Sql;
+import kr.co.board1.log.MyLog;
 
 public class ArticleDao {
 	
@@ -200,7 +201,7 @@ public class ArticleDao {
 	public List<ArticleBean> selectArticles(int start) {
 		
 		List<ArticleBean> articles = new ArrayList<>();
-		
+		MyLog.getInstance().info("selectArticles...");
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
@@ -230,6 +231,7 @@ public class ArticleDao {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			MyLog.getInstance().error(e.getMessage());
 		}
 		
 		return articles;
@@ -322,7 +324,20 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticle() {}
+	public void updateArticle(String title, String content, String id) {
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, id);
+			psmt.executeUpdate();
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public int updateComment(String content, String id) {
 		
@@ -343,7 +358,20 @@ public class ArticleDao {
 		return result;
 	}
 	
-	public void deleteArticle() {}	
+	public void deleteArticle(String id) {
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
 	public void deleteComment(String id) {
 		// ¥Ò±€ ªË¡¶
 		try {
@@ -361,18 +389,3 @@ public class ArticleDao {
 		
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

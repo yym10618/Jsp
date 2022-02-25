@@ -14,9 +14,9 @@ public class DBConfig {
 	
 	private DBConfig() {}
 	
-	private final String HOST = "jdbc:mysql://192.168.56.102:3306/yym10618";
-	private final String USER = "root";
-	private final String PASS = "12345";
+	private final String HOST = "jdbc:mysql://54.180.134.197:3306/yym10618";
+	private final String USER = "test";
+	private final String PASS = "1234";
 	
 	public Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");

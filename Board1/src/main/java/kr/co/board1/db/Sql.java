@@ -51,6 +51,15 @@ public class Sql {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
+	public static final String UPDATE_ARTICLE = "UPDATE `Board_article` SET "
+												+ "`title`=?,"
+												+ "`content`=? WHERE `id`=?";
+	
+	public static final String DELETE_ARTICLE = "DELETE a, b FROM `Board_article` AS a "
+												+ "LEFT JOIN `Board_file` AS b "
+												+ "ON a.id = b.parent "
+												+ "WHERE `id`=?";
+	
 	public static final String INSERT_COMMENT = "INSERT INTO `Board_article` SET "
 												+ "`parent`=?,"
 												+ "`content`=?,"
@@ -75,12 +84,3 @@ public class Sql {
 											  
 	
 }
-
-
-
-
-
-
-
-
-
