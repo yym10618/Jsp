@@ -1,11 +1,11 @@
 <%@page import="com.google.gson.Gson"%>
-<%@page import="bean.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="bean.MemberBean"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String host = "jdbc:mysql://chhak.or.kr:3306/yym10618";
@@ -22,7 +22,7 @@
 		String sql = "SELECT * FROM `Member`";
 		ResultSet rs = stmt.executeQuery(sql);
 		
-		while(rs.next()){
+		while(rs.next()){	
 			
 			MemberBean mb = new MemberBean();
 			mb.setUid(rs.getString(1));
@@ -41,11 +41,9 @@
 		e.printStackTrace();
 	}
 	
-	
-	// jsonData 출력
+	// json 데이터 출력
 	Gson gson = new Gson();
 	String jsonData = gson.toJson(members);
 	
 	out.print(jsonData);
-
 %>
