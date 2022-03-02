@@ -2,7 +2,6 @@
 <%@ include file="./_header.jsp" %>
       <main>
           <div class="slider">
-
               <ul>
                   <li><img src="./img/main_slide_img1.jpg" alt="슬라이더1"></li>
                   <li><img src="./img/main_slide_img2.jpg" alt="슬라이더2"></li>
