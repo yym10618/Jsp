@@ -4,6 +4,7 @@
 	request.setCharacterEncoding("utf-8");
 	String cate = request.getParameter("cate");
 	String type = request.getParameter("type");
+	String no = request.getParameter("no");
 	
 	pageContext.include("./inc/_"+cate+".jsp");
 %>
@@ -28,7 +29,7 @@
                 </tr>
             </table>
             <div>
-                <a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>" class="btnCancel">취소</a>
+                <a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>&no=<%=no %>" class="btnCancel">취소</a>
                 <input type="submit"  class="btnWrite" value="수정완료">
             </div>
         </form>
