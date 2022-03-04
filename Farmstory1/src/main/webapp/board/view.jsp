@@ -35,6 +35,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 $(function(){
+	$('.btnDelete').click(function(){
+		
+		let isOk = confirm('정말 삭제 하시겠습니까?');
+		
+		if(isOk){
+			return true;	
+		}else{
+			return false;
+		}
+	});
+	
 	// 댓글 삭제
 	$('.commentDelete').click(function(){
 		
@@ -102,7 +113,7 @@ $(function(){
     <table>
         <tr>
             <td>제목</td>
-            <td><input type="text" name="title" value=<%=article.getTitle() %> readonly/></td>
+            <td><input type="text" name="title" value ="<%=article.getTitle() %>" readonly/></td>
         </tr>
         <tr>
             <td>첨부파일</td>
@@ -119,8 +130,8 @@ $(function(){
         </tr>
     </table>
     <div>
-        <a href="#" class="btnDelete">삭제</a>
-        <a href="/Farmstory1/board/modify.jsp?cate=<%= cate %>&type=<%= type %>&no=<%=no %>" class="btnModify">수정</a>
+        <a href="/Farmstory1/board/proc/delete.jsp?cate=<%= cate %>&type=<%= type %>&no=<%=no %>" class="btnDelete">삭제</a>
+        <a href="/Farmstory1/board/modify.jsp?cate=<%= cate %>&type=<%= type %>&no=<%=no %>&title=<%=article.getTitle()%>&content=<%=article.getContent()%>" class="btnModify">수정</a>
         <a href="/Farmstory1/board/list.jsp?cate=<%= cate %>&type=<%= type %>&no=<%=no %>" class="btnList">목록</a>
     </div>  
     

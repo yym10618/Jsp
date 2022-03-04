@@ -8,6 +8,7 @@ public class ArticleBean {
 	private String type;
 	private String title;
 	private String content;
+	private String cate;
 	private int file;
 	private int hit;
 	private String uid;
@@ -25,6 +26,12 @@ public class ArticleBean {
 		this.fb = fb;
 	}
 	
+	public String getCate() {
+		return cate;
+	}
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
 	
 	public String getFname() {
 		return fname;

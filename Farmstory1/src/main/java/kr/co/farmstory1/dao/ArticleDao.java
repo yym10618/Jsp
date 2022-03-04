@@ -343,11 +343,56 @@ public List<ArticleBean> selectComments(String parent) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateArticle(String title, String content, String no) {
 		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			psmt.executeUpdate();
+			conn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void deleteArticle(String no) {
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	public void updateArticle() {}
-	
-	public void deleteArticle() {}
+	public int selectCountNo() {
+		
+		int total = 0;
+		
+		try{
+			Connection conn = DBConfig.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_COUNT_NO);
+			
+			if(rs.next()){
+				total = rs.getInt(1);
+			}
+			
+			conn.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
 	
 }
