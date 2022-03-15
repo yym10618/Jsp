@@ -22,7 +22,6 @@ public class RegisterService implements CommonService {
 			String hp   = req.getParameter("hp");
 			String pos  = req.getParameter("pos");
 			String dep  = req.getParameter("dep");
-			String rdate  = req.getParameter("rdate");
 			
 			// Dao ½ÇÇà
 			MemberVo vo = new MemberVo();
@@ -31,7 +30,6 @@ public class RegisterService implements CommonService {
 			vo.setHp(hp);
 			vo.setPos(pos);
 			vo.setDep(dep);
-			vo.setRdate(rdate);
 			
 			MemberDao.getInstance().insertMember(vo);
 			

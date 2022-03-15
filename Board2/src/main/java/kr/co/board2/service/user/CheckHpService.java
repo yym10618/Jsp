@@ -13,8 +13,8 @@ public class CheckHpService implements CommonService{
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
 
-		String uid = req.getParameter("uid");
-		int count = UserDao.getInstance().selectCountUid(uid);
+		String hp = req.getParameter("hp");
+		int count = UserDao.getInstance().selectCountUid(hp);
 		
 		// Json 데이터 생성
 		JsonObject json = new JsonObject();

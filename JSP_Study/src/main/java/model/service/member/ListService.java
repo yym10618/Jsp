@@ -17,7 +17,7 @@ public class ListService implements CommonService {
 		// Dao 실행(데이터 가져오기)
 		List<MemberVo> members = MemberDao.getInstance().selectMembers();
 		
-		// members 데이터셋을 View에서 참조하기 위해 request 객체로 저장
+		// users 데이터셋을 View에서 참조하기 위해 request 객체로 저장
 		req.setAttribute("members", members);
 		
 		return "/Sub8/member/list.jsp";

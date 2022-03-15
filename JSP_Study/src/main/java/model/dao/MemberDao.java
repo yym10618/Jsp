@@ -31,7 +31,6 @@ public class MemberDao {
 			psmt.setString(3, vo.getHp());
 			psmt.setString(4, vo.getPos());
 			psmt.setInt(5, vo.getDep());
-			psmt.setString(6, vo.getRdate());
 			
 			psmt.executeUpdate();
 			conn.close();
@@ -56,8 +55,7 @@ public class MemberDao {
 				member.setName(rs.getString(2));
 				member.setHp(rs.getString(3));
 				member.setPos(rs.getString(4));
-				member.setDep(rs.getInt(5));
-				member.setRdate(rs.getString(6));
+				member.setDep(rs.getString(5));
 			}
 			conn.close();
 			
@@ -97,13 +95,12 @@ public class MemberDao {
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
-			PreparedStatement psmt = conn.prepareStatement("UPDATE `Member` SET `name`=?, `hp`=?, `pos`=?, `dep`=?, `rdate`=NOW() WHERE `uid`=?");
+			PreparedStatement psmt = conn.prepareStatement("UPDATE `Member` SET `name`=?, `hp`=?, `pos`=?, `dep`=? WHERE `uid`=?");
 			psmt.setString(1, vo.getName());
 			psmt.setString(2, vo.getHp());
 			psmt.setString(3, vo.getPos());
 			psmt.setInt(4, vo.getDep());
-			psmt.setString(5, vo.getRdate());
-			psmt.setString(6, vo.getUid());
+			psmt.setString(5, vo.getUid());
 			psmt.executeUpdate();
 			
 			conn.close();

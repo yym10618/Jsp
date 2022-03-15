@@ -13,7 +13,7 @@ public class ModifyService implements CommonService {
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
 		
 		if(req.getMethod().equals("GET")) {
-			// Get¿äÃ»
+			// Getìš”ì²­
 			String uid = req.getParameter("uid");
 			MemberVo member = MemberDao.getInstance().selectMember(uid);
 			
@@ -21,13 +21,12 @@ public class ModifyService implements CommonService {
 			
 			return "/Sub8/member/modify.jsp";
 		}else {
-			// Post¿äÃ»
+			// Postìš”ì²­
 			String uid  = req.getParameter("uid");
 			String name = req.getParameter("name");
 			String hp   = req.getParameter("hp");
 			String pos  = req.getParameter("pos");
 			String dep  = req.getParameter("dep");
-			String rdate  = req.getParameter("rdate");
 			
 			MemberVo vo = new MemberVo();
 			vo.setUid(uid);
@@ -35,11 +34,10 @@ public class ModifyService implements CommonService {
 			vo.setHp(hp);
 			vo.setPos(pos);
 			vo.setDep(dep);
-			vo.setRdate(rdate);
 			
 			MemberDao.getInstance().updateMember(vo);
 			
-			return "redirect:/JSP_Study/Sub8/user/list.do";
+			return "redirect:/JSP_Study/Sub8/member/list.do";
 		}
 	}
 

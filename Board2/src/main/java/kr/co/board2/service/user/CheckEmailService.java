@@ -13,8 +13,8 @@ public class CheckEmailService implements CommonService{
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
 
-		String uid = req.getParameter("uid");
-		int count = UserDao.getInstance().selectCountUid(uid);
+		String email = req.getParameter("email");
+		int count = UserDao.getInstance().selectCountUid(email);
 		
 		// Json 데이터 생성
 		JsonObject json = new JsonObject();
