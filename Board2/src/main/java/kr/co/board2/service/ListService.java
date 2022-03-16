@@ -20,14 +20,14 @@ public class ListService implements CommonService {
 		UserVo userVo = (UserVo) sess.getAttribute("sessUser");
 		
 		if(userVo == null) {
-			return "redirect:/Board2/user/login.do";	
+			return "redirect:/Board2/user/login.do";
 		}else {
 			String pg = req.getParameter("pg");
 			
-			// 페이지 처리			
+			// ÆäÀÌÁö Ã³¸®			
 			int currentPage  = getCurrentPageNum(pg);
 			int total        = ArticleDao.getInstance().selectCountTotal();
-			int lastPageNum  = getLastPageNum(total);			
+			int lastPageNum  = getLastPageNum(total);
 			int start        = getLimitStart(currentPage);
 			int pageStartNum = getPageStartNum(total, start); 
 			int[] groups     = getPageGroup(currentPage, lastPageNum);

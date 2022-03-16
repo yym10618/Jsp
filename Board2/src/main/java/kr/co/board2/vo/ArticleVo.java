@@ -16,6 +16,14 @@ public class ArticleVo {
 	
 	// 추가필드
 	private String fname;
+	private FileVo fv;
+	
+	public FileVo getFv() {
+		return fv;
+	}
+	public void setFv(FileVo fv) {
+		this.fv = fv;
+	}
 	
 	public String getFname() {
 		return fname;
@@ -40,6 +48,10 @@ public class ArticleVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
+	public void setNo(String no) {
+		this.no = Integer.parseInt(no);
+	}
+	
 	public int getParent() {
 		return parent;
 	}

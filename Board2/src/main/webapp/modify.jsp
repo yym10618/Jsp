@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
         <section id="board" class="modify">
             <h3>글수정</h3>
             <article>
-                <form action="#">
+                <form action="/Board2/modify.do" method="post">
                     <table>
                         <tr>
                             <td>제목</td>
@@ -20,16 +21,16 @@
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content"></textarea>                                
+                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>                                
                             </td>
                         </tr>
                         <tr>
                             <td>첨부</td>
-                            <td><input type="file" name="file"/></td>
+                            <td><input type="file" name="fname"/></td>
                         </tr>
                     </table>
                     <div>
-                        <a href="./list.html" class="btnCancel">취소</a>
+                        <a href="/Board2/list.do" class="btnCancel">취소</a>
                         <input type="submit"  class="btnWrite" value="수정완료">
                     </div>
                 </form>
