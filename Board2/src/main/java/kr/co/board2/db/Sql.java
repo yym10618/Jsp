@@ -71,21 +71,20 @@ public class Sql {
 	
 	
 	public static final String UPDATE_FILE_COUNT  = "UPDATE `Board_file` SET `download` = `download` + 1 WHERE `fid`=?";
-	public static final String UPDATE_ARTICLE_HIT = "UPDATE `Board_article` SET `hit` = `hit` + 1 WHERE `id`=?";
-	public static final String UPDATE_ARTICLE_COMMENT_PLUS  = "UPDATE `Board_article` SET `comment` = `comment` + 1 WHERE `id`=?";
-	public static final String UPDATE_ARTICLE_COMMENT_MINUS = "UPDATE `Board_article` SET `comment` = `comment` - 1 WHERE `id`=?";
-	
 	public static final String UPDATE_ARTICLE = "UPDATE `Board_article` SET "
 											+ "`title`=?,"
 											+ "`content`=? WHERE `no`=?";
-
 	public static final String DELETE_ARTICLE = "DELETE a, b FROM `Board_article` AS a "
 											+ "LEFT JOIN `Board_file` AS b "
 											+ "ON a.no = b.parent "
 											+ "WHERE `no`=?";
+	public static final String UPDATE_ARTICLE_HIT = "UPDATE `Board_article` SET `hit` = `hit` + 1 WHERE `id`=?";
+	public static final String UPDATE_ARTICLE_COMMENT_PLUS  = "UPDATE `Board_article` SET `comment` = `comment` + 1 WHERE `id`=?";
+	public static final String UPDATE_ARTICLE_COMMENT_MINUS = "UPDATE `Board_article` SET `comment` = `comment` - 1 WHERE `id`=?";
 	
-	public static final String UPDATE_COMMENT = "UPDATE `Board_article` SET `content`=? WHERE `id`=?";
-	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `id`=?";
+	public static final String UPDATE_COMMENT = "UPDATE `Board_article` SET `content`=? WHERE `no`=?";
+	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `no`=?";
+	public static final String DELETE_COMMENTS_BY_PARENT = "DELETE FROM `Board_article` WHERE `no`=?";
 											  
 	
 }

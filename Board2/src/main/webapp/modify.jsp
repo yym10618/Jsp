@@ -6,6 +6,22 @@
     <meta charset="UTF-8">
     <title>글수정</title>
     <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+	    $(function(){
+		    $('.btnWrite').click(function(){
+				
+				let isOk = confirm('정말 수정 하시겠습니까?');
+			
+				if(isOk){
+					alert('수정완료되었습니다.');
+					return true;	
+				}else{
+					return false;
+				}
+			});
+	    });
+	</script>
 </head>
 <body>
     <div id="wrapper">
@@ -14,14 +30,15 @@
             <article>
                 <form action="/Board2/modify.do" method="post">
                     <table>
+                    <input type="hidden" name="no" value="${article.no}">
                         <tr>
                             <td>제목</td>
-                            <td><input type="text" name="title" placeholder="제목을 입력하세요."/></td>
+                            <td><input type="text" name="title" placeholder="제목을 입력하세요." value="${article.title}"/></td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>                                
+                                <textarea name="content" placeholder="내용을 입력하세요.">${article.content}</textarea>                                
                             </td>
                         </tr>
                         <tr>

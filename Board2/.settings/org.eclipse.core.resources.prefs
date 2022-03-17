@@ -1,8 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/main/java/kr/co/board2/dao/ArticleDao.java=UTF-8
 encoding//src/main/java/kr/co/board2/dao/UserDao.java=UTF-8
+encoding//src/main/java/kr/co/board2/service/CommentDeleteService.java=UTF-8
+encoding//src/main/java/kr/co/board2/service/CommentModifyService.java=UTF-8
 encoding//src/main/java/kr/co/board2/service/CommentService.java=UTF-8
+encoding//src/main/java/kr/co/board2/service/DeleteService.java=UTF-8
 encoding//src/main/java/kr/co/board2/service/ListService.java=UTF-8
+encoding//src/main/java/kr/co/board2/service/ModifyService.java=UTF-8
 encoding//src/main/java/kr/co/board2/service/ViewService.java=UTF-8
 encoding//src/main/java/kr/co/board2/service/user/TermsService.java=UTF-8
 encoding//src/main/java/kr/co/board2/vo/ArticleVo.java=UTF-8

@@ -21,7 +21,7 @@
 	                <tr>
 	                    <td>첨부파일</td>
 	                    <td>
-	                        <a href="#">${article.fv.oName}</a>
+	                        <a href="/Board2/fileDownload.do?fid=${article.fv.fid}">${article.fv.oName}</a>
 	                        <span>${article.fv.download}회 다운로드</span>
 	                    </td>
 	                </tr>
@@ -34,8 +34,8 @@
                 </tr>
             </table>
             <div>
-                <a href="/Board2/delete.do" class="btnDelete">삭제</a>
-                <a href="/Board2/modify.do" class="btnModify">수정</a>
+                <a href="/Board2/delete.do?no=${article.no}&fid=${article.fv.fid}&dfile=${article.file}" class="btnDelete">삭제</a>
+                <a href="/Board2/modify.do?no=${article.no}" class="btnModify">수정</a>
                 <a href="/Board2/list.do" class="btnList">목록</a>
             </div>  
             
@@ -51,8 +51,8 @@
 	                    </span>
 	                    <textarea name="content" readonly>${comment.content}</textarea>
 	                    <div>
-	                        <a href="#">삭제</a>
-	                        <a href="#">수정</a>
+	                        <a href="#" class="del" data-no="${comment.no}">삭제</a>
+	                        <a href="#" class="modify" data-no="${comment.no}" data-mode="r">수정</a>	                        
 	                    </div>
 	                </article>
                 </c:forEach>
@@ -63,14 +63,114 @@
             </section>
             
             <script>
-            	
+            	$(function(){
+         			$('.btnDelete').click(function(){
+            			
+            				let isOk = confirm('정말 삭제 하시겠습니까?');
+            			
+            				if(isOk){
+            					return true;	
+            				}else{
+            					return false;
+            				}
+         			});
+            	});
+            
+            
+           		// 댓글 삭제/수정
+            	$(function(){
+            		
+            		// 댓글 삭제 - 동적 이벤트 구현
+            		$(document).on('click', '.comment > div > .del', function(e){
+            			e.preventDefault();
+            			
+            			let parentArticle = $(this).parent().parent();
+            			
+            			let result = confirm('정말 삭제하시겠습니까?');
+            			if(!result){
+            				return;
+            			}
+						
+            			let no = $(this).attr('data-no');
+            			let jsonData = {"no":no};
+            			let url = "/Board2/commentDelete.do";
+            			
+            			$.get(url, jsonData, function(data){
+            				
+            				if(data.result == 1){
+            					alert("삭제 되었습니다.");
+            					// 화면 동적 삭제
+            					parentArticle.remove();
+            				}
+            				
+            			}, 'json');
+            		});
+            		
+            	}); // 댓글 삭제 끝
+            
+	    		// 댓글 수정 - 동적 이벤트 구현
+	    		$(document).on('click', '.comment > div > .modify', function(e){
+	    			e.preventDefault();
+	    			
+	    			let mode = $(this).attr('data-mode');
+	    			
+	    			if(mode == 'r'){
+	    				// 수정모드 전환
+	    				$(this).attr('data-mode', 'w');
+	    				
+	    				let tag = $(this);    			
+		    			let textarea = tag.parent().prev();
+		    			
+		    			tag.prev().hide();		    			
+		    			tag.text('수정하기');
+		    			
+		    			textarea.attr('readonly', false).focus();
+		    			textarea.css({'background':'white', 'outline':'1px solid gray'});
+		    			
+	    			}else{
+	    				// 수정완료 하기
+	    				$(this).attr('data-mode', 'r');
+	    				
+	    				let tag = $(this);    			
+		    			let textarea = tag.parent().prev();    			 			
+		    			
+		    			let content = textarea.val();
+		    			let no = tag.attr('data-no');
+		    			
+		    			let jsonData = {"content": content, "no": no};
+		    			
+		    			
+		    			$.ajax({
+		    				url: '/Board2/commentModify.do',
+		    				type: 'post',
+		    				data: jsonData,
+		    				dataType: 'json',
+		    				success: function(data){
+		    					if(data.result == 1){
+		    						alert('댓글을 수정 했습니다.');
+		    						// 수정완료 모드로 전환
+		    						tag.text('수정');
+		    						tag.prev().show();		    						
+		    						textarea.attr('readonly', true);
+		    						textarea.css({'background':'transparent', 'outline':'none'});
+		    					}
+		    				}
+		    			});
+	    			}
+	    		});// 댓글 수정 끝
+            
+            	// 댓글 등록
 	            $(function(){
 	            	
 	            	$('.commentForm > form').submit(function(){
 	            		
-	            		let parent  = $(this).children('input[name=parent]').val();
-	            		let uid     = $(this).children('input[name=uid]').val();
-	            		let content = $(this).children('textarea[name=content]').val();
+	            		let inputParent = $(this).children('input[name=parent]');
+	            		let inputUid    = $(this).children('input[name=uid]');
+	            		let textarea    = $(this).children('textarea[name=content]');
+	            		
+	            		let parent  = inputParent.val();
+	            		let uid     = inputUid.val();
+	            		let content = textarea.val();
 	            		
 	            		let jsonData = {"parent": parent, "uid": uid, "content": content };
 	            		
@@ -82,37 +182,40 @@
 	            			success: function(data){
 	            				
 	            				console.log(data);
-	            				// 화면 렌더링
-            					let tags = `<article class='comment'>
+	            				// 화면 동적 생성
+            					let html = `<article class="comment">
 				        	                    <span>
-				    	                        	<span>닉네임</span>
-				    	                        	<span>22-03-16</span>
+				    	                        	<span class="nick">닉네임</span>
+				    	                        	<span class="rdate">22-03-16</span>
 				    	                    	</span>
-				    	                    	<textarea name='comment' readonly>댓글내용</textarea>
+				    	                    	<textarea name="comment" readonly>댓글내용</textarea>
 				    	                    	<div>
-				    	                        	<a href='#'>삭제</a>
-				    	                        	<a href='#'>수정</a>
+				    	                        	<a href="#" class="del">삭제</a>
+				    	                        	<a href="#" class="modify" data-mode="r">수정</a>
 				    	                    	</div>
 				    	                	</article>`;
             					
-            					let dom = $(tags);
-            					dom.find('.comment > span > span:nth-child(1)').text(data.nick);
-            					dom.find('.comment > span > span:nth-child(2)').text(data.rdate);
-            					dom.find('.comment > textarea').text(data.content);
+				    	        
+            					let dom = $(html);
+        						
+            					dom.find('.nick').text(data.nick);
+            					dom.find('.rdate').text(data.rdate);
+            					dom.find('textarea').text(data.content);
+            					dom.find('.del').attr('data-no', data.no);
+            					dom.find('.modify').attr('data-no', data.no);
             					
             					$('.commentList').append(dom);
-            				
-	            			}	            			
-	            		});
+            					
+            					textarea.val("");
+            					$('.empty').remove();
+            					
+            					
+	            			} // success end
+	            		}); // ajax end
 	            		
 	            		return false;
 	            	});
-	            	
-	            	
-	            	
 	            });
-            
-            
             </script>
 
             <!-- 댓글입력폼 -->
