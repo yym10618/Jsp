@@ -3,20 +3,24 @@ package kr.co.farmstory2.service.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
 import kr.co.farmstory2.controller.CommonService;
 import kr.co.farmstory2.dao.UserDao;
-import kr.co.farmstory2.vo.TermsVo;
 
-public class TermsService implements  CommonService{
+public class CheckNickService implements CommonService{
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
 
-		TermsVo vo = UserDao.getInstance().selectTerms();
+		String nick = req.getParameter("nick");
 		
-		req.setAttribute("termsVo", vo);
+		int result = UserDao.getInstance().selectCountNick(nick);
 		
-		return "/user/terms.jsp";
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		return "json:"+json.toString();
 	}
 
 }
