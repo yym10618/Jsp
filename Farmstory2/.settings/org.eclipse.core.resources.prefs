@@ -1,4 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/java/kr/co/farmstory2/dao/ArticleDao.java=UTF-8
 encoding//src/main/java/kr/co/farmstory2/dao/UserDao.java=UTF-8
+encoding//src/main/java/kr/co/farmstory2/service/board/CommentDeleteService.java=UTF-8
+encoding//src/main/java/kr/co/farmstory2/service/board/CommentModifyService.java=UTF-8
+encoding//src/main/java/kr/co/farmstory2/service/board/CommentService.java=UTF-8
+encoding//src/main/java/kr/co/farmstory2/service/board/ListService.java=UTF-8
 encoding//src/main/java/kr/co/farmstory2/vo/ArticleVo.java=UTF-8
 encoding//src/main/webapp/css/style.css=UTF-8

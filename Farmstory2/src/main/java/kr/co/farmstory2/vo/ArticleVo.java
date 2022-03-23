@@ -8,29 +8,21 @@ public class ArticleVo {
 	private String type;
 	private String title;
 	private String content;
-	private String cate;
 	private int file;
 	private int hit;
 	private String uid;
 	private String regip;
 	private String rdate;
 	
-	// 추가필드
+	// Ãß°¡ÇÊµå
 	private String fname;
-	private FileVo fb;
+	private FileVo fv;
 	
-	public FileVo getFb() {
-		return fb;
+	public FileVo getFv() {
+		return fv;
 	}
-	public void setFb(FileVo fb) {
-		this.fb = fb;
-	}
-	
-	public String getCate() {
-		return cate;
-	}
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setFv(FileVo fv) {
+		this.fv = fv;
 	}
 	
 	public String getFname() {
@@ -56,7 +48,6 @@ public class ArticleVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	
 	public int getParent() {
 		return parent;
 	}
@@ -73,14 +64,12 @@ public class ArticleVo {
 	public void setComment(int comment) {
 		this.comment = comment;
 	}
-	
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	
 	public String getTitle() {
 		return title;
 	}

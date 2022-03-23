@@ -1,7 +1,6 @@
 package kr.co.farmstory2.config;
 
 public class Sql {
-	
 	// user
 	public static final String SELECT_TERMS = "SELECT * FROM `Board_terms`";
 	public static final String INSERT_USER  = "INSERT INTO `Board_user` SET "
@@ -24,8 +23,8 @@ public class Sql {
 	public static final String SELECT_USER = "SELECT * FROM `Board_user` WHERE `uid`=? AND `pass`=PASSWORD(?)";
 	
 	// board
-	public static final String SELECT_MAX_ID   = "SELECT MAX(`id`) FROM `Board_article`";
-	public static final String SELECT_COUNT_NO = "SELECT COUNT(`no`) FROM `Board_article` WHERE `parent`=0 AND `type`= ? ";
+	public static final String SELECT_MAX_NO   = "SELECT MAX(`no`) FROM `Board_article`";
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `Board_article` WHERE `parent`=0 AND `type`=?";
 	public static final String SELECT_FILE     = "SELECT * FROM `Board_file` WHERE `fid`=?";
 	public static final String SELECT_ARTICLE  = "SELECT * FROM `Board_article` AS a "
 												+ "LEFT JOIN `Board_file` AS b "
@@ -35,13 +34,23 @@ public class Sql {
 	public static final String SELECT_ARTICLES = "SELECT a.*, b.`nick` FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b "
 												+ "ON a.uid = b.uid "
-												+ "WHERE a.parent = 0 AND a.`type` = ? "
+												+ "WHERE a.parent = 0 AND a.type = ? "
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
 	
 	public static final String SELECT_COMMENTS = "SELECT a.*, b.nick FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b ON a.uid = b.uid "
 												+ "WHERE `parent`=? ORDER BY `no` ASC";
+	
+	public static final String SELECT_COMMENT  = "SELECT a.*, b.nick FROM `Board_article` AS a "
+												+ "JOIN `Board_user` AS b ON a.uid = b.uid "
+												+ "WHERE `no`=?";
+	
+	public static final String SELECT_LATESTS = "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='grow'   ORDER BY `no` DESC LIMIT 5) "
+												+ "UNION "
+												+ "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='school' ORDER BY `no` DESC LIMIT 5) "
+												+ "UNION "
+												+ "(SELECT * FROM `Board_article` WHERE `parent`=0 AND `type`='story'  ORDER BY `no` DESC LIMIT 5)"; 
 	
 	public static final String INSERT_ARTICLE = "INSERT INTO `Board_article` SET "
 												+ "`type`=?,"
@@ -59,12 +68,6 @@ public class Sql {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
-	public static final String SELECT_LATESTS = "(SELECT * FROM `Board_article` WHERE `parent` =0 AND `type`='grow'   ORDER BY `no` DESC LIMIT 5) "
-												+"UNION "
-												+"(SELECT * FROM `Board_article` WHERE `parent` =0 AND `type`='school' ORDER BY `no` DESC LIMIT 5) "
-												+"UNION "
-												+"(SELECT * FROM `Board_article` WHERE `parent` =0 AND `type`='story'  ORDER BY `no` DESC LIMIT 5);";
-	
 	public static final String INSERT_FILE = "INSERT INTO `Board_file` SET "
 											+ "`parent`=?,"
 											+ "`oName`=?,"
@@ -76,16 +79,10 @@ public class Sql {
 	public static final String UPDATE_ARTICLE_HIT = "UPDATE `Board_article` SET `hit` = `hit` + 1 WHERE `no`=?";
 	public static final String UPDATE_ARTICLE_COMMENT_PLUS  = "UPDATE `Board_article` SET `comment` = `comment` + 1 WHERE `no`=?";
 	public static final String UPDATE_ARTICLE_COMMENT_MINUS = "UPDATE `Board_article` SET `comment` = `comment` - 1 WHERE `no`=?";
-	
 	public static final String UPDATE_ARTICLE = "UPDATE `Board_article` SET "
-												+ "`title`=?,"
-												+ "`content`=? WHERE `no`=?";
-	
-	public static final String DELETE_ARTICLE = "DELETE a, b FROM `Board_article` AS a "
-												+ "LEFT JOIN `Board_file` AS b "
-												+ "ON a.no = b.parent "
-												+ "WHERE `no`=?";
-	
+											+ "`title`=?,"
+											+ "`content`=? WHERE `no`=?";
+	public static final String DELETE_ARTICLE = "DELETE FROM `Board_article` WHERE `no`=?";
 	public static final String UPDATE_COMMENT = "UPDATE `Board_article` SET `content`=? WHERE `no`=?";
 	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `no`=?";
 											  
