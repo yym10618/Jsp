@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.farmstory2.dao.ArticleDao;
 import kr.co.farmstory2.vo.ArticleVo;
+import kr.co.farmstory2.commons.AboutPaging;
 import kr.co.farmstory2.controller.CommonService;
 
-public class ListService implements CommonService {
+public class ListService extends AboutPaging implements CommonService {
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
@@ -18,7 +19,6 @@ public class ListService implements CommonService {
 		String type = req.getParameter("type");
 		String pg = req.getParameter("pg");
 		
-		// ÆäÀÌÁö Ã³¸®			
 		int currentPage  = getCurrentPageNum(pg);
 		int total        = ArticleDao.getInstance().selectCountTotal(type);
 		int lastPageNum  = getLastPageNum(total);
@@ -40,45 +40,4 @@ public class ListService implements CommonService {
 		
 	}// businessProc end
 	
-	public int getCurrentPageNum(String pg) {
-		if(pg == null) {
-			pg = "1";
-		}
-		return Integer.parseInt(pg);
-	}
-	
-	public int getLastPageNum(int total) {
-		int lastPageNum = 0;
-		
-		if(total % 10 == 0){
-			lastPageNum = total / 10;
-		}else{
-			lastPageNum = total / 10 + 1;
-		}
-		
-		return lastPageNum;
-	}
-	
-	public int getLimitStart(int currentPage) {
-		return (currentPage - 1) * 10;
-	}
-	
-	public int getPageStartNum(int total, int start) {
-		return (total - start)+1;
-	}
-	
-	public int[] getPageGroup(int currentPage, int lastPageNum) {
-		int groupCurrent = (int)Math.ceil(currentPage / 10.0);
-		int groupStart = (groupCurrent - 1) * 10 + 1;
-		int groupEnd = groupCurrent * 10;
-		
-		if(groupEnd > lastPageNum){
-			groupEnd = lastPageNum;
-		}
-		
-		int[] groups = {groupStart, groupEnd};
-		
-		return groups;
-	}
-
 }

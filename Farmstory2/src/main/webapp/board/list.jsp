@@ -16,7 +16,7 @@
             <c:forEach var="article" items="${articles}">
 				<tr>
 					<td>${pageStartNum = pageStartNum - 1}</td>
-                  	<td><a href="/Farmstory2/board/view.do?cate=${cate}&type=${type}&no=${article.no}">${article.title}</a>&nbsp;[${article.comment}]</td>
+                  	<td><a href="/Farmstory2/board/view.do?cate=${cate}&type=${type}&no=${article.no}&pg=${currentPage}">${article.title}</a>&nbsp;[${article.comment}]</td>
                   	<td>${article.nick}</td>
                   	<td>${article.rdate}</td>
                   	<td>${article.hit}</td>

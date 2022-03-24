@@ -23,7 +23,7 @@ public class ArticleDao {
 	}
 	private ArticleDao() {}
 	
-	// ±âº» CRUD
+	// 기본 CRUD
 	public int insertArticle(ArticleVo vo) {
 		
 		try {
@@ -292,6 +292,32 @@ public class ArticleDao {
 		return fvo;
 	}
 	
+	public List<ArticleVo> selectLatests(){
+		
+		List<ArticleVo> latests = new ArrayList<>();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_LATESTS);
+			while(rs.next()) {
+				ArticleVo article = new ArticleVo();
+				article.setNo(rs.getInt(1));
+				article.setType(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setRdate(rs.getString(11).substring(2, 10));
+				latests.add(article);
+			}
+			
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return latests;
+	}
+	
 	public void updateFileCount(String fid) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -368,6 +394,46 @@ public class ArticleDao {
 		
 		return result;
 	}
-			
 	
+	public void deleteCommentsByParent(String no) {
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENTS_BY_PARENT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+			
+	public FileVo deleteFile(String no, String file) {
+		
+		FileVo vo = null;
+		PreparedStatement psmt = null;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			if(Integer.parseInt(file) > 0) {
+				psmt = conn.prepareStatement(Sql.SELECT_FILE_BY_PARENT);
+				psmt.setString(1, no);
+				ResultSet rs = psmt.executeQuery();
+				if(rs.next()) {
+					vo = new FileVo();
+					vo.setnName(rs.getString(1));
+				}
+			}
+			psmt = conn.prepareStatement(Sql.DELETE_FILE);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+		
+	}
 }

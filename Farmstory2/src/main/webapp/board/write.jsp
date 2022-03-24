@@ -8,6 +8,7 @@
         	<input type="hidden" name="cate" value="${cate}" />
         	<input type="hidden" name="type" value="${type}" />
         	<input type="hidden" name="uid"  value="${sessUser.uid}" />
+        	<input type="hidden" name="fname"  value="${file.fid}" />
             <table>
                 <tr>
                     <td>제목</td>

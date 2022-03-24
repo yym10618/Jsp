@@ -26,9 +26,9 @@
         </tr>
     </table>
     <div>
-        <a href="/Farmstory2/board/delete.do?cate=${cate}&type=${type}&no=${article.no}" class="btnDelete">삭제</a>
+        <a href="/Farmstory2/board/delete.do?cate=${cate}&type=${type}&no=${article.no}&file=${article.file}" class="btnDelete">삭제</a>
         <a href="/Farmstory2/board/modify.do?cate=${cate}&type=${type}&no=${article.no}" class="btnModify">수정</a>
-        <a href="/Farmstory2/board/list.do?cate=${cate}&type=${type}" class="btnList">목록</a>
+        <a href="/Farmstory2/board/list.do?cate=${cate}&type=${type}&pg=${currentPage}" class="btnList">목록</a>
     </div>  
     
     <!-- 댓글리스트 -->

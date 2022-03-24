@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.farmstory2.commons.AboutPaging;
 import kr.co.farmstory2.controller.CommonService;
 import kr.co.farmstory2.dao.ArticleDao;
 import kr.co.farmstory2.vo.ArticleVo;
+import kr.co.farmstory2.vo.FileVo;
 import kr.co.farmstory2.vo.UserVo;
 
-public class ViewService implements  CommonService{
+public class ViewService extends AboutPaging implements CommonService {
 
 	@Override
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp) {
@@ -24,8 +26,12 @@ public class ViewService implements  CommonService{
 			return "redirect:/Farmstory2/user/login.do?success=103";
 		}else {
 			String no = req.getParameter("no");
+			String fid = req.getParameter("fid");
 			String cate = req.getParameter("cate");
 			String type = req.getParameter("type");
+			String pg = req.getParameter("pg");
+			
+			int currentPage = getCurrentPageNum(pg);
 			
 			ArticleDao dao = ArticleDao.getInstance();
 			
@@ -35,6 +41,7 @@ public class ViewService implements  CommonService{
 			req.setAttribute("comments", comments);
 			req.setAttribute("cate", cate);
 			req.setAttribute("type", type);
+			req.setAttribute("currentPage", currentPage);
 			return "/board/view.jsp";
 		}
 	}
