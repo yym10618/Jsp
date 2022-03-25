@@ -19,9 +19,6 @@ public class DeleteService implements  CommonService{
 		String type = req.getParameter("type");
 		String file = req.getParameter("file");
 		
-		req.setAttribute("no", no);
-		req.setAttribute("file", file);
-		
 		ArticleDao.getInstance().deleteArticle(no);
 		ArticleDao.getInstance().deleteCommentsByParent(no);
 		

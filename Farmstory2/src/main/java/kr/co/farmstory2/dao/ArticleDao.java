@@ -422,7 +422,7 @@ public class ArticleDao {
 				ResultSet rs = psmt.executeQuery();
 				if(rs.next()) {
 					vo = new FileVo();
-					vo.setnName(rs.getString(1));
+					vo.setnName(rs.getString(4));
 				}
 			}
 			psmt = conn.prepareStatement(Sql.DELETE_FILE);
